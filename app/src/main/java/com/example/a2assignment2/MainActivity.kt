@@ -12,4 +12,10 @@ class MainActivity : AppCompatActivity() {
         //opening Fragment
         FragmentManager.setFragment(DaysFragment.newInstance(),this)
     }
+    //checking which fragment is on
+    override fun onBackPressed() {
+        if(FragmentManager.currentFragment is DaysFragment)super.onBackPressed()
+        else FragmentManager.setFragment(DaysFragment.newInstance(), this)
+
+    }
 }
