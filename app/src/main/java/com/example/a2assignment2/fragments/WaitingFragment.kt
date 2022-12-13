@@ -17,6 +17,7 @@ import com.example.a2assignment2.adapters.ExerciseAdapter
 import com.example.a2assignment2.databinding.ExerciseListFragmentBinding
 import com.example.a2assignment2.databinding.FragmentDaysBinding
 import com.example.a2assignment2.databinding.WaitingFragmentBinding
+import com.example.a2assignment2.utils.FragmentManager
 import com.example.a2assignment2.utils.MainViewModel
 import com.example.a2assignment2.utils.TimeUtils
 
@@ -49,7 +50,7 @@ class WaitingFragment : Fragment() {
             }
 
             override fun onFinish() {
-            Toast.makeText(activity, "Done", Toast.LENGTH_LONG)
+                FragmentManager.setFragment(ExerciseFragment.newInstance(), activity as AppCompatActivity)
             }
 
         }.start()
