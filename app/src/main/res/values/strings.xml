@@ -3,4 +3,7 @@
     <string name="slogan">On the way to perfection!</string>
     <string name="day">Day:</string>
     <string name="exercise">Exercises</string>
+    <string name="waiting_message">Exercises start in:</string>
+    <string name="start">Start</string>
+    <string name="next">Next</string>
 </resources>

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.a2assignment2.R
 import com.example.a2assignment2.databinding.ExerciseListItemBinding
+import pl.droidsonroids.gif.GifDrawable
 
 class ExerciseAdapter() : ListAdapter<ExerciseModel, ExerciseAdapter.ExerciseHolder>(MyComparator()) {
 
@@ -18,6 +19,7 @@ class ExerciseAdapter() : ListAdapter<ExerciseModel, ExerciseAdapter.ExerciseHol
 
             tvName.text = exercise.name
             tvCount.text = exercise.time
+            imEx.setImageDrawable(GifDrawable(root.context.assets, exercise.image))
         }
     }
     //creating elements

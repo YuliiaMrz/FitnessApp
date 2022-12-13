@@ -14,6 +14,7 @@ import com.example.a2assignment2.adapters.DaysAdapter
 import com.example.a2assignment2.adapters.ExerciseAdapter
 import com.example.a2assignment2.databinding.ExerciseListFragmentBinding
 import com.example.a2assignment2.databinding.FragmentDaysBinding
+import com.example.a2assignment2.utils.FragmentManager
 import com.example.a2assignment2.utils.MainViewModel
 
 class ExerciseListFragment : Fragment() {
@@ -40,6 +41,9 @@ class ExerciseListFragment : Fragment() {
         adapter = ExerciseAdapter()
         rcView.layoutManager= LinearLayoutManager(activity)
         rcView.adapter = adapter
+        bStart.setOnClickListener {
+            FragmentManager.setFragment(WaitingFragment.newInstance(), activity as AppCompatActivity)
+        }
     }
 
 
