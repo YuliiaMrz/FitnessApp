@@ -6,18 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a2assignment2.R
-import com.example.a2assignment2.adapters.DayModel
-import com.example.a2assignment2.adapters.DaysAdapter
-import com.example.a2assignment2.adapters.ExerciseAdapter
 import com.example.a2assignment2.adapters.ExerciseModel
 import com.example.a2assignment2.databinding.ExerciseBinding
-import com.example.a2assignment2.databinding.ExerciseListFragmentBinding
-import com.example.a2assignment2.databinding.FragmentDaysBinding
 import com.example.a2assignment2.utils.FragmentManager
 import com.example.a2assignment2.utils.MainViewModel
 import com.example.a2assignment2.utils.TimeUtils
@@ -28,6 +22,7 @@ class ExerciseFragment : Fragment() {
     private lateinit var binding: ExerciseBinding
     private var exerciseCounter = 0
     private var exList: ArrayList<ExerciseModel>? = null
+    private var ab: ActionBar? = null
     private val model: MainViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -40,6 +35,7 @@ class ExerciseFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        ab = (activity as AppCompatActivity).supportActionBar
         model.mutableListExercise.observe(viewLifecycleOwner) {
             exList = it
             nextExercise()
@@ -57,7 +53,7 @@ class ExerciseFragment : Fragment() {
             showNextExercise()
 
         } else {
-            exerciseCounter++
+            FragmentManager.setFragment(DayFinishFragment.newInstance(), activity as AppCompatActivity)
 
         }
     }
@@ -65,6 +61,8 @@ class ExerciseFragment : Fragment() {
     private fun showExercise(exercise: ExerciseModel) = with(binding) {
         imMain.setImageDrawable(GifDrawable(root.context.assets, exercise.image))
         tvName.text = exercise.name
+        val title = "$exerciseCounter / ${exList?.size}"
+        ab?.title = title
     }
 
     private fun setExerciseType(exercise: ExerciseModel) {
@@ -78,7 +76,7 @@ class ExerciseFragment : Fragment() {
     //showing next exercise
     private fun showNextExercise() = with(binding){
         if(exerciseCounter < exList?.size!!) {
-            val ex = exList?.get(exerciseCounter++) ?: return
+            val ex = exList?.get(exerciseCounter) ?: return
             imNext.setImageDrawable(GifDrawable(root.context.assets, ex.image))
             setTimeType(ex)
         } else {
