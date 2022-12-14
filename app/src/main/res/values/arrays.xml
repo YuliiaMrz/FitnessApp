@@ -3,11 +3,11 @@
     <string-array name="exercise">
         <item>Rest|30|0.gif</item><!-- 0 -->
         <item>Exercise 1|45|1.gif</item> <!-- 1 -->
-        <item>Exercise 2|45|2.gif</item> <!-- 2 -->
+        <item>Exercise 2|30|2.gif</item> <!-- 2 -->
         <item>Exercise 3|45|3.gif</item> <!-- 3 -->
-        <item>Exercise 4|45|4.gif</item> <!-- 4 -->
+        <item>Exercise 4|30|4.gif</item> <!-- 4 -->
         <item>Exercise 5|45|5.gif</item> <!-- 5 -->
-        <item>Exercise 6|45|6.gif</item> <!-- 6 -->
+        <item>Exercise 6|30|6.gif</item> <!-- 6 -->
     </string-array>
     <string-array name="day_exercises">
         <item>1,0,2,0,3</item>

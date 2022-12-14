@@ -50,12 +50,15 @@ class ExerciseFragment : Fragment() {
     }
 
     private fun nextExercise() {
-        if(exerciseCounter < exList?.size!!) {
+        if(exerciseCounter < exList?.size!!){
             val ex = exList?.get(exerciseCounter++) ?: return
             showExercise(ex)
             setExerciseType(ex)
+            showNextExercise()
+
         } else {
-            Toast.makeText(activity, "Done", Toast.LENGTH_LONG).show()
+            exerciseCounter++
+
         }
     }
 
@@ -69,6 +72,27 @@ class ExerciseFragment : Fragment() {
             binding.tvTime.text = exercise.time
         } else {
             startTimer(exercise)
+        }
+    }
+
+    //showing next exercise
+    private fun showNextExercise() = with(binding){
+        if(exerciseCounter < exList?.size!!) {
+            val ex = exList?.get(exerciseCounter++) ?: return
+            imNext.setImageDrawable(GifDrawable(root.context.assets, ex.image))
+            setTimeType(ex)
+        } else {
+            imNext.setImageDrawable(GifDrawable(root.context.assets, "congrats.gif"))
+            tvNextName.text = getString(R.string.done)
+        }
+    }
+
+    private fun setTimeType(ex: ExerciseModel) {
+        if(ex.time.startsWith("x")) {
+            binding.tvNextName.text = ex.name
+        } else {
+            val name = ex.name + ": ${TimeUtils.getTime(ex.time.toLong() * 1000)}"
+            binding.tvNextName.text = name
         }
     }
 
