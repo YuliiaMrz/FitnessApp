@@ -35,6 +35,7 @@ class ExerciseFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        exerciseCounter = model.getExerciseCount()
         ab = (activity as AppCompatActivity).supportActionBar
         model.mutableListExercise.observe(viewLifecycleOwner) {
             exList = it
@@ -114,6 +115,7 @@ class ExerciseFragment : Fragment() {
     //stopping timer when closed app
     override fun onDetach() {
         super.onDetach()
+        model.savePref(model.currentDay.toString(), exerciseCounter - 1)
         timer?.cancel()
     }
 
